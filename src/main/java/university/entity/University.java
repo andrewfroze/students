@@ -37,4 +37,9 @@ public class University {
         faculties.forEach(faculty -> students.addAll(faculty.getAllStudents()));
         return students;
     }
+
+    @Override
+    public String toString() {
+        return universityName + faculties;
+    }
 }

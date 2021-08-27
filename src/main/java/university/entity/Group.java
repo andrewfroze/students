@@ -43,4 +43,9 @@ public class Group {
             });
         }
     }
+
+    @Override
+    public String toString() {
+        return groupNumber + "\n" + students + "\n";
+    }
 }

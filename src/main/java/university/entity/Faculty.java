@@ -35,4 +35,9 @@ public class Faculty {
         groups.forEach(group -> students.addAll(group.getStudents()));
         return students;
     }
+
+    @Override
+    public String toString() {
+        return facultyName + "\n" + groups + "\n";
+    }
 }

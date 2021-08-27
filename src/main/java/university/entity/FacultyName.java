@@ -3,6 +3,6 @@ package university.entity;
 public enum FacultyName {
     PHYSICAL,
     CHEMICAL,
-    ECONOMIC,
+    ECONOMICAL,
     BIOLOGICAL
 }

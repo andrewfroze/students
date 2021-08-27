@@ -7,7 +7,7 @@ import university.utils.DataSetter;
 public class App {
 
     public static void main(String[] args) {
-        University bsuUniversity = DataSetter.createUniversityWithRandomStudentInFaculties("BSU", 500, PHYSICAL, BIOLOGICAL, CHEMICAL, ECONOMIC);
-        System.out.println(bsuUniversity);
+        University bsuUniversity = DataSetter.createUniversityWithRandomStudentInFaculties("BSU", 500, PHYSICAL, BIOLOGICAL, CHEMICAL, ECONOMICAL);
+        System.out.println(bsuUniversity.toString());
     }
 }

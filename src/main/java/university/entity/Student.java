@@ -56,4 +56,9 @@ public class Student {
             throw new IllegalScoreException("Score should belong to interval [0; 10]");
         }
     }
+
+    @Override
+    public String toString() {
+        return  name;
+    }
 }
