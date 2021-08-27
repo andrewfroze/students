@@ -20,7 +20,7 @@ public class Student {
         this.scores = new HashMap<>();
     }
 
-    public double getAverageMarkBySubject(Subject subject) throws SubjectNotFoundException {
+    public double getAverageMarkBySubject(Subject subject) {
         if (scores.containsKey(subject)) {
             return scores.get(subject).stream().mapToInt(i -> i).average()
                     .orElseThrow(() -> new SubjectNotFoundException(String.format("Student %s hasn't marks by subject %s", name, subject)));
@@ -29,7 +29,7 @@ public class Student {
         }
     }
 
-    public void addScoreForSubject(Subject subject, int score) throws SubjectNotFoundException {
+    public void addScoreForSubject(Subject subject, int score) {
         if (score >= 0 && score <= 10) {
             if (scores.containsKey(subject)) {
                 scores.get(subject).add(score);
