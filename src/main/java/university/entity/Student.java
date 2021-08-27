@@ -1,5 +1,6 @@
 package university.entity;
 
+import university.exceptions.IllegalScoreException;
 import university.exceptions.SubjectNotFoundException;
 
 import java.util.HashMap;
@@ -23,8 +24,20 @@ public class Student {
         if (scores.containsKey(subject)) {
             return scores.get(subject).stream().mapToInt(i -> i).average()
                     .orElseThrow(() -> new SubjectNotFoundException(String.format("Student %s hasn't marks by subject %s", name, subject)));
-        } else  {
+        } else {
             throw new SubjectNotFoundException(String.format("Student %s hasn't subject %s", name, subject));
+        }
+    }
+
+    public void addScoreForSubject(Subject subject, int score) throws SubjectNotFoundException {
+        if (score >= 0 && score <= 10) {
+            if (scores.containsKey(subject)) {
+                scores.get(subject).add(score);
+            } else {
+                throw new SubjectNotFoundException(String.format("Student %s hasn't subject %s", name, subject));
+            }
+        } else {
+            throw new IllegalScoreException("Score should belong to interval [0; 10]");
         }
     }
 }
