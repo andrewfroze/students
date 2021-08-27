@@ -13,7 +13,8 @@ public class App {
     public static void main(String[] args) throws StudentNotFoundException, IllegalScoreException {
         University bsuUniversity = DataSetter.createUniversityWithRandomStudentInFaculties("BSU", 500, PHYSICAL, BIOLOGICAL, CHEMICAL, ECONOMICAL);
         StatisticUtil.showAverageScoreForStudent(studentName, bsuUniversity);
-        StatisticUtil.showAverageScoreBySubjectInGroup(bsuUniversity);
+        StatisticUtil.showAverageScoreByRandomSubjectInRandomGroup(bsuUniversity);
+        StatisticUtil.showAverageScoreByRandomSubjectInUniversity(bsuUniversity);
 
     }
 }

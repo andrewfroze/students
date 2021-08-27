@@ -1,5 +1,6 @@
 package university.entity;
 
+import university.exceptions.IllegalScoreException;
 import university.exceptions.StudentNotFoundException;
 
 import java.util.ArrayList;
@@ -41,12 +42,24 @@ public class University {
     }
 
     public Student getStudentByName(String name) {
-        for (Student student: getAllStudents()) {
-            if(student.getName().equals(name)) {
+        for (Student student : getAllStudents()) {
+            if (student.getName().equals(name)) {
                 return student;
             }
         }
         throw new StudentNotFoundException(String.format("There isn't student '%s' in university '%s'", name, universityName));
+    }
+
+    public double getAverageScoreBySubject(Subject subject) {
+        List<Integer> scoresBySubject = new ArrayList<>();
+        getAllStudents().forEach(student -> {
+            if (student.getScores().containsKey(subject)) {
+                scoresBySubject.addAll(student.getScores().get(subject));
+            }
+        });
+        return scoresBySubject.stream().mapToInt(i -> i).average()
+                .orElseThrow(() -> new IllegalScoreException(String.format("There are no scores by subject %s in %s university",
+                        subject, universityName)));
     }
 
     @Override
