@@ -5,10 +5,16 @@ import java.util.List;
 
 public class Faculty {
     private FacultyName facultyName;
+    private String universityName;
     private List<Group> groups = new ArrayList<>();
 
-    public Faculty(FacultyName facultyName) {
+    public Faculty(FacultyName facultyName, String universityName) {
         this.facultyName = facultyName;
+        this.universityName = universityName;
+    }
+
+    public String getUniversityName() {
+        return universityName;
     }
 
     public FacultyName getFacultyName() {
@@ -19,11 +25,12 @@ public class Faculty {
         return groups;
     }
 
-    public Faculty(FacultyName facultyName, int numberOfGroups) {
+    public Faculty(String universityName, FacultyName facultyName, int numberOfGroups) {
         this.facultyName = facultyName;
+        this.universityName = universityName;
         if (numberOfGroups >= 0) {
             for (int i = 1; i <= numberOfGroups; i++) {
-                groups.add(new Group(this.facultyName, i));
+                groups.add(new Group(this.universityName, this.facultyName, i));
             }
         } else {
             throw new NumberFormatException("Number of groups should be positive");

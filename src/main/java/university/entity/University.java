@@ -1,5 +1,7 @@
 package university.entity;
 
+import university.exceptions.StudentNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,12 +25,12 @@ public class University {
     }
 
     public University addFaculty(FacultyName facultyName) {
-        faculties.add(new Faculty(facultyName));
+        faculties.add(new Faculty(facultyName, this.universityName));
         return this;
     }
 
     public University addFacultyWithGroups(FacultyName facultyName, int numberOfGroups) {
-        faculties.add(new Faculty(facultyName, numberOfGroups));
+        faculties.add(new Faculty(this.universityName, facultyName, numberOfGroups));
         return this;
     }
 
@@ -36,6 +38,15 @@ public class University {
         List<Student> students = new ArrayList<>();
         faculties.forEach(faculty -> students.addAll(faculty.getAllStudents()));
         return students;
+    }
+
+    public Student getStudentByName(String name) {
+        for (Student student: getAllStudents()) {
+            if(student.getName().equals(name)) {
+                return student;
+            }
+        }
+        throw new StudentNotFoundException(String.format("There isn't student '%s' in university '%s'", name, universityName));
     }
 
     @Override
