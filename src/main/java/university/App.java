@@ -4,6 +4,7 @@ import static university.entity.FacultyName.*;
 import university.entity.University;
 import university.exceptions.IllegalScoreException;
 import university.exceptions.StudentNotFoundException;
+import university.utils.CreateExceptionUtil;
 import university.utils.DataSetter;
 import university.utils.StatisticUtil;
 
@@ -16,5 +17,10 @@ public class App {
         StatisticUtil.showAverageScoreByRandomSubjectInRandomGroup(bsuUniversity);
         StatisticUtil.showAverageScoreByRandomSubjectInUniversity(bsuUniversity);
 
+        CreateExceptionUtil.causeIllegalScoreException(bsuUniversity);
+        CreateExceptionUtil.causeSubjectsNotFoundException();
+        CreateExceptionUtil.causeStudentsNotFoundException();
+        CreateExceptionUtil.causeGroupsNotFoundException();
+        CreateExceptionUtil.causeFacultyNotFoundException();
     }
 }

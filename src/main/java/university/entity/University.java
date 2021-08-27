@@ -1,5 +1,6 @@
 package university.entity;
 
+import university.exceptions.FacultyNotFoundException;
 import university.exceptions.IllegalScoreException;
 import university.exceptions.StudentNotFoundException;
 
@@ -60,6 +61,12 @@ public class University {
         return scoresBySubject.stream().mapToInt(i -> i).average()
                 .orElseThrow(() -> new IllegalScoreException(String.format("There are no scores by subject %s in %s university",
                         subject, universityName)));
+    }
+
+    public void checkUniversityFaculties(){
+        if(faculties.isEmpty()) {
+            throw new FacultyNotFoundException(String.format("University %s hasn't faculties", universityName));
+        }
     }
 
     @Override

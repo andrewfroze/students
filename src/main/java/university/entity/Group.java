@@ -1,6 +1,7 @@
 package university.entity;
 
 import university.exceptions.IllegalScoreException;
+import university.exceptions.StudentNotFoundException;
 import university.exceptions.SubjectNotFoundException;
 
 import java.util.*;
@@ -63,6 +64,13 @@ public class Group {
         } else {
             throw new SubjectNotFoundException(String.format("There isn't subject %s in %s group on '%s' faculty in '%s' university",
                     subject, groupNumber, facultyName, universityName));
+        }
+    }
+
+    public void checkStudentsInGroup() {
+        if (students.isEmpty()) {
+            throw new StudentNotFoundException(String.format("There are not students in %s group on %s faculty in %s university",
+                    groupNumber, facultyName, universityName));
         }
     }
 

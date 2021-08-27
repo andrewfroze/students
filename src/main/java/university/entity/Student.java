@@ -52,7 +52,7 @@ public class Student {
         }
     }
 
-    public void addScoreForSubject(Subject subject, int score) {
+    public void addMarkForSubject(Subject subject, int score) {
         if (score >= 0 && score <= 10) {
             if (scores.containsKey(subject)) {
                 scores.get(subject).add(score);
@@ -73,6 +73,12 @@ public class Student {
     public double getTotalAverageScore() {
         return getAllMarks().stream().mapToInt(i->i).average()
                 .orElseThrow(() -> new IllegalScoreException(String.format("Student %s hasn't marks", name)));
+    }
+
+    public void checkStudentSubjects() {
+        if (scores.isEmpty()) {
+            throw new SubjectNotFoundException(String.format("Student %s hasn't subjects", name));
+        }
     }
 
     @Override

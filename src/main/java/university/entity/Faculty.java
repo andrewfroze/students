@@ -1,5 +1,7 @@
 package university.entity;
 
+import university.exceptions.GroupNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,13 @@ public class Faculty {
         List<Student> students = new ArrayList<>();
         groups.forEach(group -> students.addAll(group.getStudents()));
         return students;
+    }
+
+    public void checkFacultyGroups() {
+        if (groups.isEmpty()) {
+            throw new GroupNotFoundException(String.format("There are not groups on %s faculty in %s university",
+                    facultyName, universityName));
+        }
     }
 
     @Override
